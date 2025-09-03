@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Himanshi 🌅</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: linear-gradient(to top, #fbbf24, #f97316, #ef4444);
+      color: white;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 15px 0;
+    }
+
+    .heart {
+      font-size: 60px;
+      animation: beat 1s infinite;
+      display: inline-block;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .yes {
+      background: #22c55e;
+      color: white;
+    }
+
+    .no {
+      background: #ef4444;
+      color: white;
+      position: relative;
+    }
+
+    /* floating emojis */
+    .emoji {
+      position: absolute;
+      font-size: 28px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-20vh) scale(1.3); opacity: 0; }
+    }
+
+    /* confetti */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      font-size: 24px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0.9; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Good Morning, Himanshi 🌅</h1>
+    <p>Main subah tumhe wish karna bhool gaya... please forgive it well never happend again!</p>
+    <div class="heart">💖</div>
+    <p>Tumhari muskaan ke bina din adhura lagta hai ☀️</p>
+    <div class="buttons">
+      <button class="btn yes" id="yesBtn">Forgive Me 🌸</button>
+      <button class="btn no" id="noBtn">Not Yet 😅</button>
+    </div>
+  </div>
+
+  <script>
+    const body = document.body;
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    // Floating emojis generator
+    const emojis = ["💖","🌸","✨","🌻","🌟","🥰"];
+    setInterval(() => {
+      const e = document.createElement("div");
+      e.className = "emoji";
+      e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      e.style.left = Math.random() * 100 + "vw";
+      e.style.animationDuration = 4 + Math.random() * 4 + "s";
+      body.appendChild(e);
+      setTimeout(() => e.remove(), 7000);
+    }, 800);
+
+    // No button runs away
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.position = "fixed";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    // Yes button confetti
+    yesBtn.addEventListener("click", () => {
+      for (let i = 0; i < 40; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.textContent = ["🎉","💐","💖","✨"][Math.floor(Math.random()*4)];
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.animationDuration = 3 + Math.random() * 3 + "s";
+        body.appendChild(c);
+        setTimeout(() => c.remove(), 6000);
+      }
+      yesBtn.textContent = "Yay! Thank You 💚";
+    });
+  </script>
+</body>
+</html>
